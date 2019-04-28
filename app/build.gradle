@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs"
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "br.com.ezequielmessore.jetpacksample"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Support
+    implementation deps.kotlin.stdlib
+    implementation deps.support.app_compat
+    implementation deps.support.design
+    implementation deps.support.core_ktx
+    implementation deps.support.constraint_layout
+
+    // Android Architecture Components
+    implementation deps.lifecycle.extensions
+    implementation deps.room.runtime
+    implementation deps.navigation.fragment
+    implementation deps.navigation.runtime
+
+    //Retrofit
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.okhttp_logging_interceptor
+
+    //Koin
+    implementation deps.koin.runtime
+    implementation deps.koin.viewmodel
+
+    //Tests
+    testImplementation deps.junit
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.atsl.rules
+}
